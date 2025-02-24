@@ -3,12 +3,22 @@ package com.example.design_patterns.strategy;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class RedheadDuck extends Duck {
+public class RedheadDuck extends Duck implements Flyable, Quackable {
 
     private static final Logger logger = LoggerFactory.getLogger(RedheadDuck.class);
 
     @Override
     public void display() {
         logger.info("RedheadDuck is displaying itself");
+    }
+
+    @Override
+    public void fly() {
+        logger.info("RedheadDuck is flying");
+    }
+
+    @Override
+    public void quack() {
+        logger.info("RedheadDuck is quacking");
     }
 }
