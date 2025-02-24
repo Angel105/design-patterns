@@ -1,5 +1,5 @@
 package com.example.design_patterns.strategy;
 
-public interface Quackable {
+public interface QuackBehavior {
     void quack();
 }

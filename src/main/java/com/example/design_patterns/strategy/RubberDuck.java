@@ -7,18 +7,14 @@ public class RubberDuck extends Duck {
 
     private static final Logger logger = LoggerFactory.getLogger(RubberDuck.class);
 
+    public RubberDuck(FlyBehavior fb, QuackBehavior qb) {
+        flyBehavior = fb;
+        quackBehavior = qb;
+    }
+
     @Override
     public void display() {
-        logger.info("RubberDuck is displaying itself");
+        logger.info("I'm a rubber duck");
     }
 
-    @Override
-    public void quack() {
-        logger.info("RubberDuck is not quacking");
-    }
-
-    @Override
-    public void fly() {
-        // empty override
-    }
 }

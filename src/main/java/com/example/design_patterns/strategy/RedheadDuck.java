@@ -1,24 +1,21 @@
 package com.example.design_patterns.strategy;
 
+import com.example.design_patterns.strategy.impl.FlyWithWings;
+import com.example.design_patterns.strategy.impl.Quack;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class RedheadDuck extends Duck implements Flyable, Quackable {
+public class RedheadDuck extends Duck {
 
     private static final Logger logger = LoggerFactory.getLogger(RedheadDuck.class);
 
+    public RedheadDuck() {
+        flyBehavior = new FlyWithWings();
+        quackBehavior = new Quack();
+    }
+
     @Override
     public void display() {
-        logger.info("RedheadDuck is displaying itself");
-    }
-
-    @Override
-    public void fly() {
-        logger.info("RedheadDuck is flying");
-    }
-
-    @Override
-    public void quack() {
-        logger.info("RedheadDuck is quacking");
+        logger.info("I'm a real Red headed duck");
     }
 }

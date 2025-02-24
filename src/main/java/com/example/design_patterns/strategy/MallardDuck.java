@@ -1,24 +1,22 @@
 package com.example.design_patterns.strategy;
 
+import com.example.design_patterns.strategy.impl.FlyWithWings;
+import com.example.design_patterns.strategy.impl.Quack;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class MallardDuck extends Duck implements Flyable, Quackable {
+public class MallardDuck extends Duck {
 
     private static final Logger logger = LoggerFactory.getLogger(MallardDuck.class);
 
+    public MallardDuck() {
+        quackBehavior = new Quack();
+        flyBehavior = new FlyWithWings();
+    }
+
     @Override
     public void display() {
-        logger.info("MallardDuck is displaying itself");
+        logger.info("I'm a real Mallard duck");
     }
 
-    @Override
-    public void fly() {
-        logger.info("MallardDuck is flying");
-    }
-
-    @Override
-    public void quack() {
-        logger.info("MallardDuck is quacking");
-    }
 }

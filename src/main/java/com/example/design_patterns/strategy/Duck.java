@@ -8,8 +8,12 @@ public abstract class Duck {
     // Initialize the logger
     private static final Logger logger = LoggerFactory.getLogger(Duck.class);
 
-    public void quack() {
-        logger.info("Duck is quacking!");
+    FlyBehavior flyBehavior;
+    QuackBehavior quackBehavior;
+
+
+    public void performQuack() {
+        quackBehavior.quack();
     }
 
     public void swim() {
@@ -17,8 +21,9 @@ public abstract class Duck {
     }
 
     public abstract void display();
-    public void fly() {
-        logger.info("Abstract Duck is flying...");
+
+    public void performFly() {
+        flyBehavior.fly();
     }
 
 }
