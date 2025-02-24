@@ -1,6 +1,7 @@
 package com.example.design_patterns;
 
 import com.example.design_patterns.strategy.*;
+import com.example.design_patterns.strategy.impl.FlyRocketPowered;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.SpringApplication;
@@ -32,6 +33,18 @@ public class DesignPatternsApplication {
 		rubberDuck.display();
 		rubberDuck.performQuack();
 		rubberDuck.performFly();
+
+		Duck model = new ModelDuck();
+		model.display();
+		model.performQuack();
+		model.performFly();
+		model.setFlyBehavior(new FlyRocketPowered());
+		model.performFly();
+
+		Duck decoy = new DecoyDuck();
+		decoy.display();
+		decoy.performQuack();
+		decoy.performFly();
 	}
 
 }
