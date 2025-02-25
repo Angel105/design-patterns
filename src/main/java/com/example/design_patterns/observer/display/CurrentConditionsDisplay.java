@@ -2,7 +2,7 @@ package com.example.design_patterns.observer.display;
 
 import com.example.design_patterns.observer.DisplayElement;
 import com.example.design_patterns.observer.Observer;
-import com.example.design_patterns.observer.Subject;
+import com.example.design_patterns.observer.WeatherData;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -12,9 +12,9 @@ public class CurrentConditionsDisplay implements Observer, DisplayElement {
 
     private float temperature;
     private float humidity;
-    private Subject weatherData; /*Link to Subject to be used to cancel Subject observation*/
+    private WeatherData weatherData; /*Link to Subject to be used to cancel Subject observation*/
 
-    public CurrentConditionsDisplay(Subject weatherData) {
+    public CurrentConditionsDisplay(WeatherData weatherData) {
         this.weatherData = weatherData;
         weatherData.registerObserver(this);
     }
@@ -25,9 +25,9 @@ public class CurrentConditionsDisplay implements Observer, DisplayElement {
     }
 
     @Override
-    public void update(float temp, float humidity, float pressure) {
-        this.temperature = temp;
-        this.humidity = humidity;
+    public void update() {
+        this.temperature = weatherData.getTemperature();
+        this.humidity = weatherData.getHumidity();
         display();
     }
 }

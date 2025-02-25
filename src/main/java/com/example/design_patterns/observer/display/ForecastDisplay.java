@@ -3,6 +3,7 @@ package com.example.design_patterns.observer.display;
 import com.example.design_patterns.observer.DisplayElement;
 import com.example.design_patterns.observer.Observer;
 import com.example.design_patterns.observer.Subject;
+import com.example.design_patterns.observer.WeatherData;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -12,9 +13,9 @@ public class ForecastDisplay implements Observer, DisplayElement {
 
     private float currentPressure = 29.95f;
     private float lastPressure;
-    private Subject weatherData;
+    private WeatherData weatherData;
 
-    public ForecastDisplay(Subject weatherData) {
+    public ForecastDisplay(WeatherData weatherData) {
         this.weatherData = weatherData;
         weatherData.registerObserver(this);
     }
@@ -32,9 +33,9 @@ public class ForecastDisplay implements Observer, DisplayElement {
     }
 
     @Override
-    public void update(float temp, float humidity, float pressure) {
+    public void update() {
         lastPressure = currentPressure;
-        currentPressure = pressure;
+        currentPressure = weatherData.getPressure();
 
         display();
     }

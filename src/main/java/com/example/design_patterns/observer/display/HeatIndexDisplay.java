@@ -3,6 +3,7 @@ package com.example.design_patterns.observer.display;
 import com.example.design_patterns.observer.DisplayElement;
 import com.example.design_patterns.observer.Observer;
 import com.example.design_patterns.observer.Subject;
+import com.example.design_patterns.observer.WeatherData;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -11,9 +12,9 @@ public class HeatIndexDisplay implements Observer, DisplayElement {
     private static final Logger logger = LoggerFactory.getLogger(HeatIndexDisplay.class);
 
     private float heatIndex = 0.0f;
-    private Subject weatherData;
+    private WeatherData weatherData;
 
-    public HeatIndexDisplay(Subject weatherData) {
+    public HeatIndexDisplay(WeatherData weatherData) {
         this.weatherData = weatherData;
         weatherData.registerObserver(this);
     }
@@ -24,8 +25,8 @@ public class HeatIndexDisplay implements Observer, DisplayElement {
     }
 
     @Override
-    public void update(float temp, float humidity, float pressure) {
-        heatIndex = computeHeatIndex(temp, humidity);
+    public void update() {
+        heatIndex = computeHeatIndex(weatherData.getTemperature(), weatherData.getHumidity());
         display();
     }
 

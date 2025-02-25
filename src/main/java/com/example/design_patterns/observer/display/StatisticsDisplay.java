@@ -3,6 +3,7 @@ package com.example.design_patterns.observer.display;
 import com.example.design_patterns.observer.DisplayElement;
 import com.example.design_patterns.observer.Observer;
 import com.example.design_patterns.observer.Subject;
+import com.example.design_patterns.observer.WeatherData;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -17,9 +18,9 @@ public class StatisticsDisplay implements Observer, DisplayElement {
     private float minTemp = POSITIVE_INFINITY;
     private float tempSum = 0.0f;
     private int numReadings;
-    private Subject weatherData;
+    private WeatherData weatherData;
 
-    public StatisticsDisplay(Subject weatherData) {
+    public StatisticsDisplay(WeatherData weatherData) {
         this.weatherData = weatherData;
         weatherData.registerObserver(this);
     }
@@ -30,7 +31,8 @@ public class StatisticsDisplay implements Observer, DisplayElement {
     }
 
     @Override
-    public void update(float temp, float humidity, float pressure) {
+    public void update() {
+        float temp = weatherData.getTemperature();
         tempSum += temp;
         numReadings++;
 
