@@ -12,6 +12,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+import static com.example.design_patterns.decorator.Beverage.Size.VENTI;
+
 @SpringBootApplication
 public class DesignPatternsApplication {
 
@@ -30,6 +32,7 @@ public class DesignPatternsApplication {
 		logger.info("{}, ${}", beverage2.getDescription(), beverage2.cost());
 
 		Beverage beverage3 = new HouseBlend();
+		beverage3.setSize(VENTI);
 		beverage3 = new Soy(beverage3);
 		beverage3 = new Mocha(beverage3);
 		beverage3 = new Whip(beverage3);
