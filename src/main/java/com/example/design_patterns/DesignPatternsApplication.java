@@ -1,33 +1,40 @@
 package com.example.design_patterns;
 
-import com.example.design_patterns.observer.WeatherData;
-import com.example.design_patterns.observer.display.CurrentConditionsDisplay;
-import com.example.design_patterns.observer.display.ForecastDisplay;
-import com.example.design_patterns.observer.display.HeatIndexDisplay;
-import com.example.design_patterns.observer.display.StatisticsDisplay;
+import com.example.design_patterns.decorator.Beverage;
+import com.example.design_patterns.decorator.DarkRoast;
+import com.example.design_patterns.decorator.Espresso;
+import com.example.design_patterns.decorator.HouseBlend;
+import com.example.design_patterns.decorator.impl.Mocha;
+import com.example.design_patterns.decorator.impl.Soy;
+import com.example.design_patterns.decorator.impl.Whip;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
 public class DesignPatternsApplication {
 
+	private static  final Logger logger = LoggerFactory.getLogger(DesignPatternsApplication.class);
 
 	public static void main(String[] args) {
 		SpringApplication.run(DesignPatternsApplication.class, args);
 
-		WeatherData weatherData = new WeatherData();
+		Beverage beverage = new Espresso();
+        logger.info("{}, ${}", beverage.getDescription(), beverage.cost());
 
-		CurrentConditionsDisplay currentDisplay = new CurrentConditionsDisplay(weatherData);
-		StatisticsDisplay statisticsDisplay = new StatisticsDisplay(weatherData);
-		ForecastDisplay forecastDisplay = new ForecastDisplay(weatherData);
-		HeatIndexDisplay heatIndexDisplay = new HeatIndexDisplay(weatherData);
+		Beverage beverage2 = new DarkRoast();
+		beverage2 = new Mocha(beverage2);
+		beverage2 = new Mocha(beverage2);
+		beverage2 = new Whip(beverage2);
+		logger.info("{}, ${}", beverage2.getDescription(), beverage2.cost());
 
-		weatherData.setMeasurements(80,65,30.4f);
-		weatherData.setMeasurements(82,70,29.2f);
-		weatherData.setMeasurements(78,90,29.2f);
+		Beverage beverage3 = new HouseBlend();
+		beverage3 = new Soy(beverage3);
+		beverage3 = new Mocha(beverage3);
+		beverage3 = new Whip(beverage3);
+		logger.info("{}, ${}", beverage3.getDescription(), beverage3.cost());
 
-		weatherData.removeObserver(forecastDisplay);
-		weatherData.setMeasurements(62,90,28.1f);
 	}
 
 }
