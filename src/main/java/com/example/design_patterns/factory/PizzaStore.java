@@ -1,15 +1,10 @@
 package com.example.design_patterns.factory;
 
-public class PizzaStore {
-    SimplePizzaFactory factory;
+public abstract class PizzaStore {
 
-    public PizzaStore(SimplePizzaFactory factory) {
-        this.factory = factory;
-    }
+    public final Pizza orderPizza(String type) {
 
-    public Pizza orderPizza(String type) {
-
-        Pizza pizza = factory.createPizza(type);
+        Pizza pizza = createPizza(type);
 
         pizza.prepare();
         pizza.bake();
@@ -18,4 +13,7 @@ public class PizzaStore {
 
         return pizza;
     }
+
+    protected abstract Pizza createPizza(String type); /*factory method*/
+
 }
