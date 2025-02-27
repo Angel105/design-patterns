@@ -1,12 +1,12 @@
 package com.example.design_patterns;
 
-import com.example.design_patterns.decorator.io.LowercaseInputStream;
+import com.example.design_patterns.factory.Pizza;
+import com.example.design_patterns.factory.PizzaStore;
+import com.example.design_patterns.factory.SimplePizzaFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-
-import java.io.*;
 
 @SpringBootApplication
 public class DesignPatternsApplication {
@@ -16,33 +16,18 @@ public class DesignPatternsApplication {
     public static void main(String[] args) {
         SpringApplication.run(DesignPatternsApplication.class, args);
 
-        try (InputStream inputStream = getFileInputStream("test.txt");
-             InputStream in = new LowercaseInputStream(new BufferedInputStream(inputStream))) {
+        SimplePizzaFactory factory = new SimplePizzaFactory();
 
-            // Use StringBuilder to build the transformed string
-            int c;
-            StringBuilder sb = new StringBuilder();
-            while ((c = in.read()) >= 0) {
-                sb.append((char) c);
-            }
-            logger.info("{}", sb);
+        PizzaStore store = new PizzaStore(factory);
 
-        } catch (IOException e) {
-            logger.error("Exception", e);
-        }
+        Pizza pizza;
 
+        pizza = store.orderPizza("cheese");
+        logger.info("Ordered pizza: {}", pizza);
+
+        pizza = store.orderPizza("veggie");
+        logger.info("Ordered pizza: {}", pizza);
     }
 
-    public static InputStream getFileInputStream(String fileName) throws IOException {
-        // Use the ClassLoader to get the InputStream for the file in the resources
-        InputStream inputStream = DesignPatternsApplication.class
-                .getClassLoader()
-                .getResourceAsStream(fileName);
-
-        if (inputStream == null) {
-            throw new IOException("File not found: " + fileName);
-        }
-        return inputStream;
-    }
 
 }
