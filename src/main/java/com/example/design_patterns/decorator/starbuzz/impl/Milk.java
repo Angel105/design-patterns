@@ -1,7 +1,7 @@
-package com.example.design_patterns.decorator.impl;
+package com.example.design_patterns.decorator.starbuzz.impl;
 
-import com.example.design_patterns.decorator.Beverage;
-import com.example.design_patterns.decorator.CondimentDecorator;
+import com.example.design_patterns.decorator.starbuzz.Beverage;
+import com.example.design_patterns.decorator.starbuzz.CondimentDecorator;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

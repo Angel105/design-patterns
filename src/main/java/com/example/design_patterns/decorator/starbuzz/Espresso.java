@@ -1,4 +1,4 @@
-package com.example.design_patterns.decorator;
+package com.example.design_patterns.decorator.starbuzz;
 
 public class Espresso extends Beverage {
 

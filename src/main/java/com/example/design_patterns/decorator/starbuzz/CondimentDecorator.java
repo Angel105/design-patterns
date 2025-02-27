@@ -1,4 +1,4 @@
-package com.example.design_patterns.decorator;
+package com.example.design_patterns.decorator.starbuzz;
 
 public abstract class CondimentDecorator extends Beverage {
     protected Beverage beverage;
