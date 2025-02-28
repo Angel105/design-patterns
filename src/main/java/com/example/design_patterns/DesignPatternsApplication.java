@@ -2,8 +2,8 @@ package com.example.design_patterns;
 
 import com.example.design_patterns.factory.Pizza;
 import com.example.design_patterns.factory.PizzaStore;
-import com.example.design_patterns.factory.store.ChicagoStylePizzaStore;
-import com.example.design_patterns.factory.store.NYStylePizzaStore;
+import com.example.design_patterns.factory.store.ChicagoPizzaStore;
+import com.example.design_patterns.factory.store.NYPizzaStore;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.SpringApplication;
@@ -17,8 +17,8 @@ public class DesignPatternsApplication {
     public static void main(String[] args) {
         SpringApplication.run(DesignPatternsApplication.class, args);
 
-        PizzaStore nyStore  = new NYStylePizzaStore();
-        PizzaStore chicagoStore = new ChicagoStylePizzaStore();
+        PizzaStore nyStore  = new NYPizzaStore();
+        PizzaStore chicagoStore = new ChicagoPizzaStore();
 
         Pizza pizza;
 

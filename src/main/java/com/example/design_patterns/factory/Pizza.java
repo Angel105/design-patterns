@@ -1,26 +1,23 @@
 package com.example.design_patterns.factory;
 
+import com.example.design_patterns.factory.ingredient.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public abstract class Pizza {
 
     private static final Logger logger = LoggerFactory.getLogger(Pizza.class);
 
     protected String name;
-    protected String dough;
-    protected String sauce;
-    protected List<String> toppings = new ArrayList<>();
+    protected Dough dough;
+    protected Sauce sauce;
+    protected Veggies veggies[] = {};
+    protected Cheese cheese;
+    protected Pepperoni pepperoni;
+    protected Clams clams;
 
-    public void prepare() {
-        logger.info("Preparing {}", name);
-        logger.info("Tossing dough...");
-        logger.info("Adding sauce...");
-        logger.info("Adding toppings: {}", listToppings());
-    }
+    public abstract void prepare();
+
     public void bake() {
         logger.info("Baking '{}' for 25 minutes at 350", name);
     }
@@ -31,24 +28,38 @@ public abstract class Pizza {
         logger.info("Placing '{}' in official PizzaStore box", name);
     }
 
-    @Override
-    public String toString() {
-        String s = "Pizza: " + name + ", " +
-                "Dough: " + dough + ", " +
-                "Sauce: " + sauce + ", " +
-                "Toppings: " + listToppings();
-        return s;
+    public String getName() {
+        return name;
     }
 
-    private StringBuilder listToppings() {
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    @Override
+    public String toString() {
         StringBuilder sb = new StringBuilder();
-        String topping;
-        for (int i = 0; i < toppings.size() - 1; i++) {
-            topping = toppings.get(i);
-            sb.append(topping).append(", ");
+        sb.append("Pizza: ").append(name);
+        if (dough != null) sb.append(", Dough: ").append(dough);
+        if (sauce != null) sb.append(", Sauce: ").append(sauce);
+        if (cheese != null) sb.append(", Cheese: ").append(cheese);
+        if (veggies.length > 0) sb.append(", Veggies: ").append(listVeggies());
+        if (clams != null) sb.append(", Clams: ").append(clams);
+        if (pepperoni != null) sb.append(", Pepperoni: ").append(pepperoni);
+
+        return sb.toString();
+    }
+
+    private StringBuilder listVeggies() {
+        StringBuilder sb = new StringBuilder();
+        sb.append(" [");
+        String str;
+        for (int i = 0; i < veggies.length - 1; i++) {
+            str = veggies[i].toString();
+            sb.append(str).append(", ");
         }
-        topping = toppings.get(toppings.size() - 1);
-        sb.append(topping);
+        str = veggies[veggies.length - 1].toString();
+        sb.append(str).append("] ");
         return sb;
     }
 }
