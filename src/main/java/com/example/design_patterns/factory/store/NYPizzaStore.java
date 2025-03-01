@@ -4,7 +4,10 @@ import com.example.design_patterns.factory.Pizza;
 import com.example.design_patterns.factory.PizzaIngredientFactory;
 import com.example.design_patterns.factory.PizzaStore;
 import com.example.design_patterns.factory.factory_impl.NYPizzaIngredientFactory;
-import com.example.design_patterns.factory.product.*;
+import com.example.design_patterns.factory.product.CheesePizza;
+import com.example.design_patterns.factory.product.ClamPizza;
+import com.example.design_patterns.factory.product.PepperoniPizza;
+import com.example.design_patterns.factory.product.VeggiePizza;
 
 public class NYPizzaStore extends PizzaStore {
     @Override

@@ -1,6 +1,7 @@
 package com.example.design_patterns.factory;
 
 import com.example.design_patterns.factory.ingredient.*;
+import com.example.design_patterns.factory.strategy.CuttingStrategy;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -15,6 +16,12 @@ public abstract class Pizza {
     protected Cheese cheese;
     protected Pepperoni pepperoni;
     protected Clams clams;
+    protected CuttingStrategy cuttingStrategy;
+
+    public Pizza(String name, CuttingStrategy cuttingStrategy) {
+        this.name = name;
+        this.cuttingStrategy = cuttingStrategy;
+    }
 
     public abstract void prepare();
 
@@ -22,7 +29,9 @@ public abstract class Pizza {
         logger.info("Baking '{}' for 25 minutes at 350", name);
     }
     public void cut() {
-        logger.info("Cutting '{}' into diagonal slices", name);
+        if (cuttingStrategy != null) {
+            cuttingStrategy.cut(name);
+        }
     }
     public void box() {
         logger.info("Placing '{}' in official PizzaStore box", name);

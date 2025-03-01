@@ -2,7 +2,8 @@ package com.example.design_patterns.factory.product;
 
 import com.example.design_patterns.factory.Pizza;
 import com.example.design_patterns.factory.PizzaIngredientFactory;
-import com.example.design_patterns.factory.factory_impl.ChicagoPizzaIngredientFactory;
+import com.example.design_patterns.factory.strategy.CuttingStrategy;
+import com.example.design_patterns.factory.strategy.impl.DefaultCuttingStrategy;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -11,8 +12,13 @@ public class ClamPizza extends Pizza {
 
     PizzaIngredientFactory ingredientFactory;
 
+    public ClamPizza(PizzaIngredientFactory ingredientFactory, String name, CuttingStrategy cuttingStrategy) {
+        super(name, cuttingStrategy);
+        this.ingredientFactory = ingredientFactory;
+    }
+
     public ClamPizza(PizzaIngredientFactory ingredientFactory, String name) {
-        this.name = name;
+        super(name, new DefaultCuttingStrategy());
         this.ingredientFactory = ingredientFactory;
     }
 
@@ -25,12 +31,4 @@ public class ClamPizza extends Pizza {
         clams = ingredientFactory.createClam();
     }
 
-    @Override
-    public void cut() {
-        if (ingredientFactory instanceof ChicagoPizzaIngredientFactory) {
-            logger.info("Cutting '{}' into square slices", name);
-        } else {
-            super.cut();
-        }
-    }
 }
