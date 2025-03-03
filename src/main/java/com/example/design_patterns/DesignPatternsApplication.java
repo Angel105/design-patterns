@@ -26,7 +26,7 @@ public class DesignPatternsApplication {
         // Test : Singleton thread-safe creation test
         for (int i = 0; i < 10; i++) {
             Thread creationThread = new Thread(() -> {
-                ChocolateBoiler instance = ChocolateBoiler.getInstance(); // Inside lambda
+                ChocolateBoiler instance = ChocolateBoiler.UNIQUE_INSTANCE; // Inside lambda
                 instance.fill();
 
                 try {

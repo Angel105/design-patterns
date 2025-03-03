@@ -3,24 +3,22 @@ package com.example.design_patterns.singleton.chocolate;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class ChocolateBoiler {
+
+public enum ChocolateBoiler {
+    UNIQUE_INSTANCE;
 
     private static final Logger logger = LoggerFactory.getLogger(ChocolateBoiler.class);
 
     private boolean empty;
     private boolean boiled;
-    private  static final ChocolateBoiler uniqueInstance  = new ChocolateBoiler();
 
-    // Private constructor to prevent instantiation
-    private ChocolateBoiler() {
+    static {
         logger.info("Thread {} is creating unique instance of ChocolateBoiler", Thread.currentThread().getId());
-        empty = true;
-        boiled = false;
     }
 
-    public static ChocolateBoiler getInstance() {
-        logger.info("Thread {} gets instance of ChocolateBoiler", Thread.currentThread().getId());
-        return  uniqueInstance;
+    ChocolateBoiler() {
+        empty = true;
+        boiled = false;
     }
 
     // Thread-safe fill() method
