@@ -1,4 +1,4 @@
-package com.example.design_patterns.singleton;
+package com.example.design_patterns.singleton.classic;
 
 // NOTE: This is not thread safe!
 
