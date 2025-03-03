@@ -9,24 +9,16 @@ public class ChocolateBoiler {
 
     private boolean empty;
     private boolean boiled;
-    private volatile static  ChocolateBoiler uniqueInstance ;
+    private  static final ChocolateBoiler uniqueInstance  = new ChocolateBoiler();
 
     // Private constructor to prevent instantiation
     private ChocolateBoiler() {
+        logger.info("Thread {} is creating unique instance of ChocolateBoiler", Thread.currentThread().getId());
         empty = true;
         boiled = false;
     }
 
-    // Double-checked locking to make getInstance() thread-safe and efficient
-    public static synchronized ChocolateBoiler getInstance() {
-        if (uniqueInstance == null) {
-            synchronized (ChocolateBoiler.class) {
-                if (uniqueInstance == null) {
-                    logger.info("Thread {} is creating unique instance of ChocolateBoiler", Thread.currentThread().getId());
-                    uniqueInstance = new ChocolateBoiler();
-                }
-            }
-        }
+    public static ChocolateBoiler getInstance() {
         logger.info("Thread {} gets instance of ChocolateBoiler", Thread.currentThread().getId());
         return  uniqueInstance;
     }
