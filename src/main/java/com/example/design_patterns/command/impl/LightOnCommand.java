@@ -1,7 +1,7 @@
 package com.example.design_patterns.command.impl;
 
 import com.example.design_patterns.command.Command;
-import com.example.design_patterns.command.Light;
+import com.example.design_patterns.command.receiver.Light;
 
 public class LightOnCommand implements Command {
 

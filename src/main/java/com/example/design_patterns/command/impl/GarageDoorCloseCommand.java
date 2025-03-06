@@ -1,7 +1,7 @@
 package com.example.design_patterns.command.impl;
 
 import com.example.design_patterns.command.Command;
-import com.example.design_patterns.command.GarageDoor;
+import com.example.design_patterns.command.receiver.GarageDoor;
 
 public class GarageDoorCloseCommand implements Command {
 
