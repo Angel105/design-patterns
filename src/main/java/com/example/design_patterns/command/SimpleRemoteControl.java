@@ -1,7 +1,7 @@
 package com.example.design_patterns.command;
 
 /**
- * The SimpleRemoteControl class is a simple implementation of a remote control
+ * The SimpleRemoteControl class (the Invoker) is a simple implementation of a remote control
  * based on the Command design pattern. It allows a single command to be set
  * and invoked by pressing a button.
  *

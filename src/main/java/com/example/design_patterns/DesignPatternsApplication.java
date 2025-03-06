@@ -1,7 +1,11 @@
 package com.example.design_patterns;
 
+import com.example.design_patterns.command.GarageDoor;
 import com.example.design_patterns.command.Light;
 import com.example.design_patterns.command.SimpleRemoteControl;
+import com.example.design_patterns.command.impl.GarageDoorCloseCommand;
+import com.example.design_patterns.command.impl.GarageDoorOpenCommand;
+import com.example.design_patterns.command.impl.LightOffCommand;
 import com.example.design_patterns.command.impl.LightOnCommand;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -21,6 +25,22 @@ public class DesignPatternsApplication {
         LightOnCommand lightOn = new LightOnCommand(light);
 
         remote.setCommand(lightOn);
+        remote.buttonWasPressed();
+
+        LightOffCommand lightOff = new LightOffCommand(light);
+
+        GarageDoor garageDoor = new GarageDoor();
+        GarageDoorOpenCommand garageOpen = new GarageDoorOpenCommand(garageDoor);
+
+        remote.setCommand(garageOpen);
+        remote.buttonWasPressed();
+
+        GarageDoorCloseCommand garageClose = new GarageDoorCloseCommand(garageDoor);
+
+        remote.setCommand(garageClose);
+        remote.buttonWasPressed();
+
+        remote.setCommand(lightOff);
         remote.buttonWasPressed();
     }
 
