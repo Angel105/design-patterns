@@ -9,9 +9,10 @@ public class CeilingFan {
     private final String location;
     private int level;
 
-    public static final int HIGH = 2;
-    public static final int MEDIUM = 1;
-    public static final int LOW = 0;
+    public static final int HIGH = 3;
+    public static final int MEDIUM = 2;
+    public static final int LOW = 1;
+    public static final int OFF = 0;
 
     public CeilingFan(String location) {
         this.location = location;
@@ -45,7 +46,7 @@ public class CeilingFan {
      * Turns off the ceiling fan by setting the speed level to 0.
      */
     public void off() {
-        level = 0;
+        level = OFF;
         logger.info("{} ceiling fan is off", location);
     }
 
@@ -53,4 +54,22 @@ public class CeilingFan {
     public int getSpeed() {
         return level;
     }
+
+    public void restoreSpeed(int previousSpeed) {
+        switch (previousSpeed) {
+            case HIGH:
+                high();
+                break;
+            case MEDIUM:
+                medium();
+                break;
+            case LOW:
+                low();
+                break;
+            case OFF:
+            default:
+                off();
+        }
+    }
+
 }
