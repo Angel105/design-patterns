@@ -1,10 +1,10 @@
 package com.example.design_patterns;
 
-import com.example.design_patterns.command.impl.*;
+import com.example.design_patterns.command.Command;
+import com.example.design_patterns.command.RemoteControl;
 import com.example.design_patterns.command.receiver.CeilingFan;
 import com.example.design_patterns.command.receiver.GarageDoor;
 import com.example.design_patterns.command.receiver.Light;
-import com.example.design_patterns.command.RemoteControl;
 import com.example.design_patterns.command.receiver.Stereo;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -26,25 +26,16 @@ public class DesignPatternsApplication {
         GarageDoor garageDoor = new GarageDoor();
         Stereo stereo = new Stereo("Living Room");
 
-        LightOnCommand livingRoomLightOn = new LightOnCommand(livingRoomLight);
-        LightOffCommand livingRoomLightOff = new LightOffCommand(livingRoomLight);
-        LightOnCommand kitchenLightOn = new LightOnCommand(kitchenLight);
-        LightOffCommand kitchenLightOff = new LightOffCommand(kitchenLight);
-
-        CeilingFanOnCommand ceilingFanOn = new CeilingFanOnCommand(ceilingFan);
-        CeilingFanOffCommand ceilingFanOff = new CeilingFanOffCommand(ceilingFan);
-
-        GarageDoorOpenCommand garageDoorUp = new GarageDoorOpenCommand(garageDoor);
-        GarageDoorCloseCommand garageDoorDown = new GarageDoorCloseCommand(garageDoor);
-
-        StereoOnWithCDCommand stereoOnWithCD = new StereoOnWithCDCommand(stereo);
-        StereoOffCommand stereoOff = new StereoOffCommand(stereo);
-
-        remote.setCommand(0, livingRoomLightOn, livingRoomLightOff);
-        remote.setCommand(1, kitchenLightOn, kitchenLightOff);
-        remote.setCommand(2, ceilingFanOn, ceilingFanOff);
-        remote.setCommand(3, stereoOnWithCD, stereoOff);
-        remote.setCommand(4, garageDoorUp, garageDoorDown);
+        remote.setCommand(0, () -> livingRoomLight.on(), () -> livingRoomLight.off());
+        remote.setCommand(1, kitchenLight::on, kitchenLight::off);
+        remote.setCommand(2, ceilingFan::high, ceilingFan::off);
+        Command stereoOnWithCD = () -> {
+            stereo.on();
+            stereo.setCD();
+            stereo.setVolume(11);
+        };
+        remote.setCommand(3, stereoOnWithCD, stereo::off);
+        remote.setCommand(4, garageDoor::up, garageDoor::down);
 
         logger.info(remote.toString());
 
@@ -62,6 +53,9 @@ public class DesignPatternsApplication {
 
         remote.onButtonWasPushed(4);
         remote.offButtonWasPushed(4);
+
+        remote.onButtonWasPushed(5);
+        remote.offButtonWasPushed(5);
     }
 
 }
