@@ -1,5 +1,6 @@
 package com.example.design_patterns.command;
 
+import com.example.design_patterns.command.impl.NoCommand;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -17,9 +18,10 @@ public class RemoteControl {
         onCommands = new Command[NUMBER_OF_SLOTS];
         offCommands = new Command[NUMBER_OF_SLOTS];
 
+        Command noCommand = new NoCommand();
         for (int i = 0; i < NUMBER_OF_SLOTS; i++) {
-            onCommands[i] = () -> {};
-            offCommands[i] = () -> {};
+            onCommands[i] = noCommand;
+            offCommands[i] = noCommand;
         }
 
         undoCommand = noCommand;
