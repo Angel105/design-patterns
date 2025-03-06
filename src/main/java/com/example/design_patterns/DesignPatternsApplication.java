@@ -46,22 +46,19 @@ public class DesignPatternsApplication {
         remote.setCommand(3, stereoOnWithCD, stereoOff);
         remote.setCommand(4, garageDoorUp, garageDoorDown);
 
-        logger.info(remote.toString());
 
         remote.onButtonWasPushed(0);
         remote.offButtonWasPushed(0);
 
-        remote.onButtonWasPushed(1);
-        remote.offButtonWasPushed(1);
+        logger.info(remote.toString());
+        remote.undoButtonWasPushed();
 
-        remote.onButtonWasPushed(2);
-        remote.offButtonWasPushed(2);
+        remote.offButtonWasPushed(0);
+        remote.onButtonWasPushed(0);
 
-        remote.onButtonWasPushed(3);
-        remote.offButtonWasPushed(3);
+        logger.info(remote.toString());
+        remote.undoButtonWasPushed();
 
-        remote.onButtonWasPushed(4);
-        remote.offButtonWasPushed(4);
     }
 
 }
