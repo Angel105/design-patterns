@@ -16,7 +16,8 @@ public class Waitress {
     }
 
     public void takeOrder(Order order) {
-        logger.info("I'm taking a new order: {}", order);
+
+        logger.info("I'm taking a new order!");
         this.orders.add(order);
         order.orderUp();
     }

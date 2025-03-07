@@ -1,8 +1,8 @@
 package com.example.design_patterns;
 
+import com.example.design_patterns.command.dinner.Order;
 import com.example.design_patterns.command.dinner.Waitress;
 import com.example.design_patterns.command.dinner.client.Customer;
-import com.example.design_patterns.command.dinner.impl.BurgerAndFriesOrder;
 import com.example.design_patterns.command.dinner.receiver.Cook;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -21,10 +21,9 @@ public class DesignPatternsApplication {
         Waitress waitress = new Waitress();
         Customer customer = new Customer();
 
-        BurgerAndFriesOrder burgerAndFries = new BurgerAndFriesOrder(cook);
-
         customer.callWaitress(waitress);
-        customer.placeOrder(burgerAndFries);
+        Order o = () -> { cook.makeBurger(); cook.makeFries(); };
+        customer.placeOrder(o );
 
     }
 
