@@ -1,6 +1,6 @@
-package com.example.design_patterns.adapter.impl;
+package com.example.design_patterns.adapter.ducks.impl;
 
-import com.example.design_patterns.adapter.Duck;
+import com.example.design_patterns.adapter.ducks.Duck;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
