@@ -4,7 +4,15 @@ import com.example.design_patterns.command.impl.NoCommand;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-
+/**
+ * The {@code RemoteControl} class functions as an interface for controlling
+ * various devices using the command design pattern. It maintains slots, each
+ * of which represents a pair of commands for turning a device on and off. An
+ * undo functionality is also provided for the most recent command executed.
+ *
+ * Features include setting commands for specific slots, executing specified
+ * commands, and undoing the last executed command.
+ */
 public class RemoteControl {
 
     private static final Logger logger = LoggerFactory.getLogger(RemoteControl.class);
