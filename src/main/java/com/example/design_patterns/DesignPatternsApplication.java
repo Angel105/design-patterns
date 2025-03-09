@@ -1,15 +1,11 @@
 package com.example.design_patterns;
 
-import com.example.design_patterns.adapter.enumiter.IteratorEnumeration;
+import com.example.design_patterns.facade.hometheater.*;
+import com.example.design_patterns.facade.hometheater.components.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Enumeration;
-import java.util.List;
 
 @SpringBootApplication
 public class DesignPatternsApplication {
@@ -19,11 +15,21 @@ public class DesignPatternsApplication {
     public static void main(String[] args) {
         SpringApplication.run(DesignPatternsApplication.class, args);
 
-        List<String> l = new ArrayList<>(Arrays.asList(new String[]{"This is", "an", "example", "of", "Adapter", "Pattern"}));
-        Enumeration<?> enumeration = new IteratorEnumeration(l.iterator());
+        Amplifier amp = new Amplifier("Amplifier");
+        Tuner tuner = new Tuner("AM/FM Tuner", amp);
+        StreamingPlayer player = new StreamingPlayer("Streaming Player", amp);
+        CdPlayer cd = new CdPlayer("CD Player", amp);
+        Projector projector = new Projector("Projector", player);
+        TheaterLights lights = new TheaterLights("Theater Ceiling Lights");
+        Screen screen = new Screen("Theater Screen");
+        PopcornPopper popper = new PopcornPopper("Popcorn Popper");
 
-        while (enumeration.hasMoreElements()) {
-            logger.info(enumeration.nextElement().toString());
-        }
+        HomeTheaterFacade homeTheater =
+                new HomeTheaterFacade(amp, tuner, player, cd,
+                        projector, lights, screen, popper);
+
+        homeTheater.watchMovie("Raiders of the Lost Ark");
+        homeTheater.endMovie();
+
     }
 }
