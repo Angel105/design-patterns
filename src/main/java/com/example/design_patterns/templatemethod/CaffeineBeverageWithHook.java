@@ -3,15 +3,21 @@ package com.example.design_patterns.templatemethod;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public abstract class CaffeineBeverage {
+public abstract class CaffeineBeverageWithHook {
 
-    private final static Logger logger = LoggerFactory.getLogger(CaffeineBeverage.class);
+    private final static Logger logger = LoggerFactory.getLogger(CaffeineBeverageWithHook.class);
 
     public final void prepareRecipe() {
         boilWater();
         brew();
         pourInCup();
-        addCondiments();
+        if (consumerWantsCondiments()) {
+            addCondiments();
+        }
+    }
+
+    public boolean consumerWantsCondiments() {
+        return true;
     }
 
     abstract void brew();
