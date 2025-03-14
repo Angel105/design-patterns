@@ -1,6 +1,8 @@
 package com.example.design_patterns;
 
-import com.example.design_patterns.templatemethod.list.MyStringList;
+import com.example.design_patterns.collections.DinnerMenu;
+import com.example.design_patterns.collections.MenuItem;
+import com.example.design_patterns.collections.PancakeHouseMenu;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.SpringApplication;
@@ -17,23 +19,23 @@ public class DesignPatternsApplication {
     public static void main(String[] args) {
         SpringApplication.run(DesignPatternsApplication.class, args);
 
-        String[] ducks = {"Mallard Duck", "Redhead Duck", "Rubber Duck", "Decoy Duck"};
-        MyStringList ducksList = new MyStringList(ducks);
-        for (int i = 0; i < ducksList.size(); i++) {
-            logger.info(ducksList.get(i));
+
+        PancakeHouseMenu pancakeHouseMenu = new PancakeHouseMenu();
+        List<MenuItem> breakfastItems = pancakeHouseMenu.getMenuItems();
+
+        DinnerMenu dinnerMenu = new DinnerMenu();
+        MenuItem[] lunchItems = dinnerMenu.getMenuItems();
+
+        logger.info("\nMENU\n----\nBREAKFAST");
+        for (int i = 0; i < breakfastItems.size(); i++) {
+            MenuItem item = breakfastItems.get(i);
+            logger.info("{} ${} {}", item.getName(), item.getPrice(), item.getDescription());
         }
 
-        String oldDuck = ducksList.set(3, "Donald Duck");
-        logger.info("Replacing {} with {}", oldDuck, ducksList.get(3));
-        logger.info("List after replacement: ");
-        for (int i = 0; i < ducksList.size(); i++) {
-            logger.info(ducksList.get(i));
-        }
-
-        List ducksSubList = ducksList.subList(2, 3);
-        logger.info("Created a sub list of ducks of size: {}", ducksSubList.size());
-        for (int i = 0; i < ducksSubList.size(); i++) {
-            logger.info(ducksSubList.get(i).toString());
+        logger.info("\nLUNCH");
+        for (int i = 0; i < lunchItems.length; i++) {
+            MenuItem item = lunchItems[i];
+            logger.info("{} ${} {}", item.getName(), item.getPrice(), item.getDescription());
         }
 
     }
