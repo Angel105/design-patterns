@@ -1,9 +1,10 @@
 package com.example.design_patterns.collections;
 
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.Map;
 
-public class CafeMenu {
+public class CafeMenu implements Menu {
     private Map<String, MenuItem> menuItems = new HashMap<>();
 
     public CafeMenu() {
@@ -21,7 +22,8 @@ public class CafeMenu {
         addItem(menuItem);
     }
 
-    public Map<String, MenuItem> getMenuItems() {
-        return menuItems;
+    @Override
+    public Iterator<MenuItem> createIterator() {
+        return menuItems.values().iterator();
     }
 }
