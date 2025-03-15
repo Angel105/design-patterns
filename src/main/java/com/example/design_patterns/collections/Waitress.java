@@ -3,37 +3,31 @@ package com.example.design_patterns.collections;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import java.util.Iterator;
+import java.util.List;
 
 public class Waitress {
 
     private final static Logger logger = LoggerFactory.getLogger(Waitress.class);
 
-    private final Menu pancakeHouseMenu;
-    private final Menu dinnerMenu;
-    private final Menu cafeMenu;
+    private final List<Menu> menus;
 
-    public Waitress(Menu pancakeHouseMenu, Menu dinnerMenu, Menu cafeMenu) {
-        this.pancakeHouseMenu = pancakeHouseMenu;
-        this.dinnerMenu = dinnerMenu;
-        this.cafeMenu = cafeMenu;
+    public Waitress(List<Menu> menus) {
+        this.menus = menus;
     }
 
     public void printMenu() {
-        Iterator<MenuItem> pancakeIterator = pancakeHouseMenu.createIterator();
-        Iterator<MenuItem> dinnerIterator = dinnerMenu.createIterator();
-        Iterator<MenuItem> cafeIterator = cafeMenu.createIterator();
-        logger.info("\nMENU\n----\nBREAKFAST");
-        printMenu(pancakeIterator);
-        logger.info("\nLUNCH");
-        printMenu(dinnerIterator);
-        logger.info("\nDINNER");
-        printMenu(cafeIterator);
+        Iterator<Menu> menuIterator = menus.iterator();
+        logger.info("\nMENU\n----");
+        while (menuIterator.hasNext()) {
+            Menu menu = menuIterator.next();
+            printMenu(menu.createIterator());
+        }
     }
 
     private void printMenu(Iterator<MenuItem> iterator) {
         while (iterator.hasNext()) {
             MenuItem item = iterator.next();
-            logger.info("{}, ${} -- {}", item.getName(), item.getPrice(), item.getDescription());
+            logger.info("{} {}, ${} -- {}", item.getMenuName(), item.getName(), item.getPrice(), item.getDescription());
         }
     }
 }

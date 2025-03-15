@@ -10,19 +10,19 @@ public class PancakeHouseMenu implements Menu {
 
     public PancakeHouseMenu() {
         menuItems = new ArrayList<>();
-
-        addItem("K&B’s Pancake Breakfast", "Pancakes with scrambled eggs, and toast", true, 2.99);
-        addItem("Regular Pancake Breakfast", "Pancakes with fried eggs, sausage", false, 2.99);
-        addItem("Blueberry Pancakes", "Pancakes made with fresh blueberries", true, 3.49);
-        addItem("Waffles", "Waffles, with your choice of blueberries or strawberries", true, 3.59);
+        final String menuName = "BREAKFAST: ";
+        addItem(menuName, "K&B’s Pancake Breakfast", "Pancakes with scrambled eggs, and toast", true, 2.99);
+        addItem(menuName, "Regular Pancake Breakfast", "Pancakes with fried eggs, sausage", false, 2.99);
+        addItem(menuName, "Blueberry Pancakes", "Pancakes made with fresh blueberries", true, 3.49);
+        addItem(menuName, "Waffles", "Waffles, with your choice of blueberries or strawberries", true, 3.59);
 
     }
 
     public void addItem(MenuItem menuItem) {
         menuItems.add(menuItem);
     }
-    public void addItem(String name, String description, boolean vegetarian, double price) {
-        MenuItem menuItem = new MenuItem(name, description, vegetarian, price);
+    public void addItem(String menuName, String name, String description, boolean vegetarian, double price) {
+        MenuItem menuItem = new MenuItem(menuName, name, description, vegetarian, price);
         addItem(menuItem);
     }
     @Override

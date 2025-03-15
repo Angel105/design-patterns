@@ -6,6 +6,9 @@ import org.slf4j.LoggerFactory;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+import java.util.ArrayList;
+import java.util.List;
+
 
 @SpringBootApplication
 public class DesignPatternsApplication {
@@ -20,7 +23,12 @@ public class DesignPatternsApplication {
         Menu dinnerMenu = new DinnerMenu();
         Menu cafeMenu = new CafeMenu();
 
-        Waitress waitress = new Waitress(pancakeHouseMenu, dinnerMenu, cafeMenu);
+        List<Menu> allMenus = new ArrayList();
+        allMenus.add(pancakeHouseMenu);
+        allMenus.add(dinnerMenu);
+        allMenus.add(cafeMenu);
+
+        Waitress waitress = new Waitress(allMenus);
 
         waitress.printMenu();
     }
