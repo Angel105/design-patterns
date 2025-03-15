@@ -25,8 +25,8 @@ public class PancakeHouseMenu {
         addItem(menuItem);
     }
 
-    public List<MenuItem> getMenuItems() {
-        return menuItems;
+    public Iterator createIterator() {
+        return new PancakeHouseMenuIterator(menuItems);
     }
 
     // other menu methods here
