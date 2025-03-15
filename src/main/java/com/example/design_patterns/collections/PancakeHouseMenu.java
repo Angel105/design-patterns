@@ -2,8 +2,9 @@ package com.example.design_patterns.collections;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Iterator;
 
-public class PancakeHouseMenu {
+public class PancakeHouseMenu implements Menu {
 
     private List<MenuItem> menuItems;
 
@@ -24,9 +25,9 @@ public class PancakeHouseMenu {
         MenuItem menuItem = new MenuItem(name, description, vegetarian, price);
         addItem(menuItem);
     }
-
-    public Iterator createIterator() {
-        return new PancakeHouseMenuIterator(menuItems);
+    @Override
+    public Iterator<MenuItem> createIterator() {
+        return menuItems.iterator();
     }
 
     // other menu methods here

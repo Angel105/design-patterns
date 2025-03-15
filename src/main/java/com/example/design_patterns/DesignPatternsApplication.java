@@ -1,6 +1,7 @@
 package com.example.design_patterns;
 
 import com.example.design_patterns.collections.DinnerMenu;
+import com.example.design_patterns.collections.Menu;
 import com.example.design_patterns.collections.PancakeHouseMenu;
 import com.example.design_patterns.collections.Waitress;
 import org.slf4j.Logger;
@@ -18,8 +19,8 @@ public class DesignPatternsApplication {
         SpringApplication.run(DesignPatternsApplication.class, args);
 
 
-        PancakeHouseMenu pancakeHouseMenu = new PancakeHouseMenu();
-        DinnerMenu dinnerMenu = new DinnerMenu();
+        Menu pancakeHouseMenu = new PancakeHouseMenu();
+        Menu dinnerMenu = new DinnerMenu();
 
         Waitress waitress = new Waitress(pancakeHouseMenu, dinnerMenu);
 

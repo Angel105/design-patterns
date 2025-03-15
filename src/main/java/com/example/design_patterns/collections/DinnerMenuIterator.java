@@ -1,6 +1,8 @@
 package com.example.design_patterns.collections;
 
-public class DinnerMenuIterator implements Iterator {
+import java.util.Iterator;
+
+public class DinnerMenuIterator implements Iterator<MenuItem> {
     private final MenuItem[] items;
     private int position = 0;
 
@@ -21,5 +23,10 @@ public class DinnerMenuIterator implements Iterator {
         MenuItem menuItem = items[position];
         position = position + 1;
         return menuItem;
+    }
+
+    @Override
+    public void remove() {
+        throw new UnsupportedOperationException("You shouldn't be trying to remove menu items.");
     }
 }

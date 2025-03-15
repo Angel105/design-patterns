@@ -2,8 +2,9 @@ package com.example.design_patterns.collections;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import java.util.Iterator;
 
-public class DinnerMenu {
+public class DinnerMenu implements Menu {
 
     private final static Logger logger = LoggerFactory.getLogger(DinnerMenu.class);
 
@@ -35,8 +36,8 @@ public class DinnerMenu {
             addItem(menuItem);
         }
     }
-
-    public Iterator createIterator() {
+    @Override
+    public Iterator<MenuItem> createIterator() {
         return new DinnerMenuIterator(menuItems);
     }
 
