@@ -1,4 +1,6 @@
-package com.example.design_patterns.collections;
+package com.example.design_patterns.collections.composite.menuiterator;
+
+import java.util.Iterator;
 
 public abstract class MenuComponent {
 
@@ -24,6 +26,8 @@ public abstract class MenuComponent {
     public boolean isVegetarian() {
         throw new UnsupportedOperationException();
     }
+
+    public abstract Iterator createIterator();
 
     public void print() {
         throw new UnsupportedOperationException();

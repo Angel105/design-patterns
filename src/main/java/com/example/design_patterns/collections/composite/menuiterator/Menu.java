@@ -1,16 +1,17 @@
-package com.example.design_patterns.collections;
+package com.example.design_patterns.collections.composite.menuiterator;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 
 public class Menu extends MenuComponent {
 
     private static final Logger logger = LoggerFactory.getLogger(Menu.class);
-
+    private Iterator<MenuComponent> iterator = null;
     private List<MenuComponent> menuComponents = new ArrayList<>();
     private final String name;
     private final String description;
@@ -43,6 +44,14 @@ public class Menu extends MenuComponent {
     @Override
     public String getDescription() {
         return description;
+    }
+
+    @Override
+    public Iterator createIterator() {
+        if (iterator == null) {
+            iterator = new CompositeIterator(menuComponents.iterator());
+        }
+        return iterator;
     }
 
     @Override

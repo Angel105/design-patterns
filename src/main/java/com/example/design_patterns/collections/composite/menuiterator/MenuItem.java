@@ -1,7 +1,9 @@
-package com.example.design_patterns.collections;
+package com.example.design_patterns.collections.composite.menuiterator;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import java.util.Iterator;
 
 public class MenuItem extends MenuComponent {
 
@@ -29,6 +31,11 @@ public class MenuItem extends MenuComponent {
 
     public boolean isVegetarian() {
         return vegetarian;
+    }
+
+    @Override
+    public Iterator createIterator() {
+        return new NullIterator();
     }
 
     public double getPrice() {

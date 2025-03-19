@@ -1,9 +1,9 @@
 package com.example.design_patterns;
 
-import com.example.design_patterns.collections.Menu;
-import com.example.design_patterns.collections.MenuComponent;
-import com.example.design_patterns.collections.MenuItem;
-import com.example.design_patterns.collections.Waitress;
+import com.example.design_patterns.collections.composite.menuiterator.Menu;
+import com.example.design_patterns.collections.composite.menuiterator.MenuComponent;
+import com.example.design_patterns.collections.composite.menuiterator.MenuItem;
+import com.example.design_patterns.collections.composite.menuiterator.Waitress;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.SpringApplication;
@@ -139,6 +139,6 @@ public class DesignPatternsApplication {
 
         Waitress waitress = new Waitress(allMenus);
 
-        waitress.printMenu();
+        waitress.printVeganMenu();
     }
 }
