@@ -3,9 +3,12 @@ package com.example.design_patterns.state;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.util.Random;
+
 public class HasQuarterState implements State {
     private final static Logger logger = LoggerFactory.getLogger(HasQuarterState.class);
     private final GumballMachine gumballMachine;
+    private Random randomWinner = new Random(System.currentTimeMillis());
 
     public HasQuarterState(GumballMachine gumballMachine) {
         this.gumballMachine = gumballMachine;
@@ -26,7 +29,12 @@ public class HasQuarterState implements State {
     @Override
     public void turnCrank() {
         logger.info("You turned...");
-        gumballMachine.setState(gumballMachine.getSoldState());
+        int winner = randomWinner.nextInt(10);
+        if ((winner == 0) && (gumballMachine.getCount() > 1)) {
+            gumballMachine.setState(gumballMachine.getWinnerState());
+        } else {
+            gumballMachine.setState(gumballMachine.getSoldState());
+        }
     }
 
     @Override

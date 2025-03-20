@@ -6,10 +6,11 @@ import org.slf4j.LoggerFactory;
 public class GumballMachine {
 
     private final static Logger logger = LoggerFactory.getLogger(GumballMachine.class);
-    private State soldOutState;
-    private State noQuarterState;
-    private State hasQuarterState;
-    private State soldState;
+    private final State soldOutState;
+    private final State noQuarterState;
+    private final State hasQuarterState;
+    private final State soldState;
+    private final State winnerState;
 
     private State state;
     private int count = 0;
@@ -19,6 +20,7 @@ public class GumballMachine {
         noQuarterState = new NoQuarterState(this);
         hasQuarterState = new HasQuarterState(this);
         soldState = new SoldState(this);
+        winnerState = new WinnerState(this);
         this.count = numberOfGumballs;
         if (numberOfGumballs > 0) {
             state = noQuarterState;
@@ -69,6 +71,10 @@ public class GumballMachine {
 
     public int getCount() {
         return count;
+    }
+
+    public State getWinnerState() {
+             return winnerState;
     }
 
     @Override
