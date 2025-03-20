@@ -1,6 +1,7 @@
 package com.example.design_patterns;
 
-import com.example.design_patterns.state.GumballMachine;
+import com.example.design_patterns.proxy.GumballMachine;
+import com.example.design_patterns.proxy.GumballMonitor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.SpringApplication;
@@ -13,9 +14,18 @@ public class DesignPatternsApplication {
     private static final Logger logger = LoggerFactory.getLogger(DesignPatternsApplication.class);
 
     public static void main(String[] args) {
+        int count;
+        if (args.length < 2) {
+            System.out.println("GumballMachine <name> <inventory>");
+            System.exit(1);
+        }
+        count = Integer.parseInt(args[1]);
+
         SpringApplication.run(DesignPatternsApplication.class, args);
 
-        GumballMachine gumballMachine = new GumballMachine(5);
+        GumballMachine gumballMachine = new GumballMachine(args[0],count);
+        GumballMonitor monitor = new GumballMonitor(gumballMachine);
+
         logger.info("{}", gumballMachine);
 
         gumballMachine.insertQuarter();
@@ -52,5 +62,6 @@ public class DesignPatternsApplication {
         gumballMachine.turnCrank();
 
         logger.info("{}", gumballMachine);
+        monitor.report();
     }
 }
