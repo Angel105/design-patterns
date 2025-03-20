@@ -52,6 +52,15 @@ public class GumballMachine {
             count = count - 1;
         }
     }
+    public void refill(int numberOfGumballs) {
+        count += numberOfGumballs;
+        logger.info("The gumball machine was just refilled, and now has {} gumballs", count);
+        if (count > 0) {
+            setState(noQuarterState);
+        } else {
+            setState(soldOutState);
+        }
+    }
 
     public State getSoldOutState() {
         return soldOutState;

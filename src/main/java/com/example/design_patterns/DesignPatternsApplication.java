@@ -46,5 +46,11 @@ public class DesignPatternsApplication {
         gumballMachine.turnCrank();
 
         logger.info("{}", gumballMachine);
+
+        gumballMachine.refill(5);
+        gumballMachine.insertQuarter();
+        gumballMachine.turnCrank();
+
+        logger.info("{}", gumballMachine);
     }
 }
