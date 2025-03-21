@@ -3,8 +3,11 @@ package com.example.design_patterns.proxy;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class GumballMachine {
+import java.rmi.RemoteException;
+import java.rmi.server.UnicastRemoteObject;
 
+public class GumballMachine extends UnicastRemoteObject implements GumballMachineRemote {
+    private static final long serialVersionUID = -9043062561001487395L;
     private final static Logger logger = LoggerFactory.getLogger(GumballMachine.class);
     private final State soldOutState;
     private final State noQuarterState;
@@ -16,7 +19,7 @@ public class GumballMachine {
     private State state;
     private int count = 0;
 
-    public GumballMachine(String location, int numberOfGumballs) {
+    public GumballMachine(String location, int numberOfGumballs) throws RemoteException {
         this.location = location;
         soldOutState = new SoldOutState(this);
         noQuarterState = new NoQuarterState(this);

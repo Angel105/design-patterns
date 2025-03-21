@@ -3,18 +3,25 @@ package com.example.design_patterns.proxy;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.rmi.RemoteException;
+
 public class GumballMonitor {
     private final static Logger logger = LoggerFactory.getLogger(GumballMonitor.class);
-    private final GumballMachine machine;
+    private final GumballMachineRemote machine;
 
-    public GumballMonitor(GumballMachine gumballMachine) {
+    public GumballMonitor(GumballMachineRemote gumballMachine) {
         this.machine = gumballMachine;
     }
 
     public void report() {
-        logger.info("Gumball Machine: {}", machine.getLocation());
-        logger.info("Current inventory: {} gumballs", machine.getCount());
-        logger.info("Current state: {}", machine.getState());
+        try {
+            logger.info("Gumball Machine: {}", machine.getLocation());
+            logger.info("Current inventory: {} gumballs", machine.getCount());
+            logger.info("Current state: {}", machine.getState());
+        } catch (RemoteException e) {
+            logger.error("{}", e.getMessage());
+            throw new RuntimeException(e);
+        }
     }
 
 }

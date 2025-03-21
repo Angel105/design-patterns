@@ -6,6 +6,7 @@ import org.slf4j.LoggerFactory;
 import java.util.Random;
 
 public class HasQuarterState implements State {
+    private static final long serialVersionUID = 565837831980061424L;
     private final static Logger logger = LoggerFactory.getLogger(HasQuarterState.class);
     private final GumballMachine gumballMachine;
     private Random randomWinner = new Random(System.currentTimeMillis());

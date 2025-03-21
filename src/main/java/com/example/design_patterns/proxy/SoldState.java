@@ -4,6 +4,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 public class SoldState implements State {
+    private static final long serialVersionUID = 2623987349519219720L;
     private final static Logger logger = LoggerFactory.getLogger(SoldState.class);
     private final GumballMachine gumballMachine;
 

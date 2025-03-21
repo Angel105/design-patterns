@@ -4,7 +4,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 public class WinnerState implements State {
-
+    private static final long serialVersionUID = -2920181299106961567L;
     private static final String ALREADY_GIVING_GUMBALL_WARNING = "Please wait, we're already giving you a gumball";
 
     private final static Logger logger = LoggerFactory.getLogger(WinnerState.class);

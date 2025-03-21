@@ -4,8 +4,9 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 public class NoQuarterState implements State {
+    private static final long serialVersionUID = -2322597683120161898L;
     private final static Logger logger = LoggerFactory.getLogger(NoQuarterState.class);
-    private final GumballMachine gumballMachine;
+    transient private final GumballMachine gumballMachine;
 
     public NoQuarterState(GumballMachine gumballMachine) {
         this.gumballMachine = gumballMachine;
